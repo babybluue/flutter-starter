@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_starter/provider/bing_image_provider.dart';
-import 'package:flutter_starter/router/routes.dart';
+import 'package:flutter_starter/src/provider/bing_image_provider.dart';
+import 'package:flutter_starter/src/router/routes.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -26,7 +26,7 @@ class _LandingState extends State<LandingScreen> {
       return;
     }
     if (isLoggedIn) {
-      Navigator.pushReplacementNamed(context, AppRoutes.home);
+      Navigator.pushReplacementNamed(context, AppRoutes.onboard);
     } else {
       Navigator.pushReplacementNamed(context, AppRoutes.login);
     }
@@ -39,17 +39,23 @@ class _LandingState extends State<LandingScreen> {
         final bingImage = bingImgProvider.bingImage;
         return Container(
           decoration: BoxDecoration(
-            image: DecorationImage(
-                fit: BoxFit.cover,
-                image: NetworkImage("https://www.bing.com/${bingImage?.url}")),
+            image: bingImage?.url == null
+                ? null
+                : DecorationImage(
+                    fit: BoxFit.cover,
+                    image:
+                        NetworkImage("https://www.bing.com/${bingImage?.url}")),
           ),
           child: Stack(
+            alignment: AlignmentDirectional.center,
             children: [
               Positioned(
                 bottom: 20.h,
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Text(bingImage?.title ?? ""),
+                child: Center(
+                  child: Text(
+                    bingImage?.title ?? "",
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               )
             ],

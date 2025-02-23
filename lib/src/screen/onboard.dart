@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_starter/src/screen/home.dart';
+import 'package:flutter_starter/src/screen/settings.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class OnBoardScreen extends StatefulWidget {
+  const OnBoardScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeState();
+  State<OnBoardScreen> createState() => _OnBoardState();
 }
 
-class _HomeState extends State<HomeScreen> {
+// check if the app is in background or foreground => WidgetsBindingObserver
+class _OnBoardState extends State<OnBoardScreen> with WidgetsBindingObserver {
   int _index = 0;
 
   final PageController _controller = PageController(initialPage: 0);
@@ -20,19 +23,33 @@ class _HomeState extends State<HomeScreen> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.paused) {
+      // 应用进入后台
+      print("App is in background");
+    } else if (state == AppLifecycleState.resumed) {
+      // 应用从后台恢复到前台
+      print("App is in foreground");
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home Screen'),
-      ),
       body: PageView(
         controller: _controller,
         // disabled horizontal scrolling
         physics: const NeverScrollableScrollPhysics(),
         onPageChanged: _onPageChanged,
         children: [
-          const Center(child: Text('Home Screen')),
-          const Center(child: Text('Settings Screen'))
+          HomeScreen(),
+          SettingsScreen(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(

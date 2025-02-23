@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_starter/model/user.dart';
-import 'package:flutter_starter/provider/bing_image_provider.dart';
-import 'package:flutter_starter/provider/user_provider.dart';
-import 'package:flutter_starter/router/routes.dart';
+import 'package:flutter_starter/src/model/user.dart';
+import 'package:flutter_starter/src/provider/bing_image_provider.dart';
+import 'package:flutter_starter/src/provider/user_provider.dart';
+import 'package:flutter_starter/src/router/routes.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -23,7 +23,7 @@ class _LoginState extends State<LoginScreen> {
     if (mounted) {
       Provider.of<UserProvider>(context, listen: false)
           .updateUser(User(name: _username));
-      Navigator.pushNamed(context, AppRoutes.home);
+      Navigator.pushReplacementNamed(context, AppRoutes.onboard);
     }
   }
 

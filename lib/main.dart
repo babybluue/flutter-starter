@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_starter/provider/bing_image_provider.dart';
-import 'package:flutter_starter/provider/user_provider.dart';
-import 'package:flutter_starter/router/routes.dart';
-import 'package:flutter_starter/screen/landing.dart';
+import 'package:flutter_starter/src/provider/bing_image_provider.dart';
+import 'package:flutter_starter/src/provider/user_provider.dart';
+import 'package:flutter_starter/src/router/routes.dart';
+import 'package:flutter_starter/src/screen/landing.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -35,9 +35,10 @@ class MyApp extends StatelessWidget {
           title: 'Flutter Demo',
           routes: AppRoutes.routes,
           onGenerateRoute: AppRoutes.onGenerateRoute,
+          themeMode: ThemeMode.system,
           theme: ThemeData(
-            brightness: Brightness.dark,
             useMaterial3: true,
+            brightness: Brightness.dark,
           ),
           home: LandingScreen(),
         );

@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_starter/model/bing_image.dart';
+import 'package:flutter_starter/src/model/bing_image.dart';
 
 class BingImageProvider extends ChangeNotifier {
   BingImage? _bingImage;
