@@ -34,6 +34,8 @@ class _LoginState extends State<LoginScreen> {
         builder: (context, BingImageProvider bingImgProvider, _) {
           final bingImage = bingImgProvider.bingImage;
           return Container(
+            padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom),
             decoration: BoxDecoration(
               image: DecorationImage(
                   fit: BoxFit.cover,
